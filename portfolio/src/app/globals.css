@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Colors ── */
+  --color-background: #ffffff;
+  --color-foreground: #111111;
+  --color-ink:        #111111;
+  --color-ink-soft:   #999999;
+  --color-ink-muted:  #cccccc;
+  --color-lime:       #c5e83a;
+  --color-surface:    #ffffff;
+
+  /* ── Typography ── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-handwriting: var(--font-caveat), "Segoe Script", cursive;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #111111;
+}
+
+body {
+  background: white;
+  color: #111111;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* prevent horizontal scroll during mascot slide-in */
+}
+
+/* ── Hero custom cursor — override all child element cursors ── */
+#hero,
+#hero * {
+  cursor: url('/images/cursor-scaled.png') 5 4, auto !important;
+}
+
+/* ── Keyframes ── */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: rotate(-6deg) scale(1); }
+  50%       { transform: rotate(6deg) scale(1.05); }
+}
+
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Animation helpers ── */
+.animate-float  { animation: float 4s ease-in-out infinite; }
+.animate-wobble { animation: wobble 3.5s ease-in-out infinite; }
+
+@keyframes portfolio-reveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-portfolio-reveal {
+  animation: portfolio-reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes drag-hint {
+  0%, 100% { transform: translateX(0); }
+  30%       { transform: translateX(-4px); }
+  70%       { transform: translateX(4px); }
+}
+
+.animate-drag-hint {
+  animation: drag-hint 1.4s ease-in-out infinite;
+  animation-delay: 0.8s;
+}
+
+/* ── Dot-grid page background ── */
+.bg-dot-grid {
+  background-color: #ffffff;
+  background-image: radial-gradient(circle, #d4d4d8 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* ── Doodle SVG draw-on ── */
+.doodle-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: dash 1.4s ease-out forwards;
+}
+
+/* ── Process section card bounce-in ── */
+@keyframes process-card-in {
+  0%   { opacity: 0; transform: scale(0.82) translateY(24px); }
+  60%  { opacity: 1; transform: scale(1.04) translateY(-6px); }
+  80%  { transform: scale(0.98) translateY(2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes process-desc-in {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.process-card-reveal {
+  animation: process-card-in 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.process-desc-reveal {
+  animation: process-desc-in 0.4s ease-out 0.25s both;
+}
+
+/* ── Footer mascot — squash & stretch hard-brake ──
+   Subtle stretch during travel, lean forward; modest squash + lean back on
+   impact; small bounce to settle. transform-origin: center bottom.            */
+@keyframes mascot-hard-brake {
+  0% {
+    opacity: 0;
+    transform: translateX(-150vw) scaleX(1.18) scaleY(0.88) rotate(4deg);
+  }
+  6% {
+    opacity: 1;
+    transform: translateX(-90vw) scaleX(1.16) scaleY(0.88) rotate(4deg);
+  }
+  /* cruising — lightly stretched, leaning forward */
+  55% {
+    transform: translateX(80px) scaleX(1.13) scaleY(0.9) rotate(3deg);
+  }
+  /* impact — squash down, whiplash lean back */
+  69% {
+    transform: translateX(12px) scaleX(0.86) scaleY(1.16) rotate(-5deg);
+  }
+  /* hold the squash */
+  78% {
+    transform: translateX(11px) scaleX(0.88) scaleY(1.12) rotate(-4deg);
+  }
+  /* bounce back */
+  88% {
+    transform: translateX(-4px) scaleX(1.05) scaleY(0.96) rotate(1deg);
+  }
+  /* settle */
+  95% {
+    transform: translateX(1px) scaleX(0.99) scaleY(1.01) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0) scaleX(1) scaleY(1) rotate(0deg);
+  }
+}
+
+.mascot-hidden {
+  opacity: 0;
+  transform: translateX(-150vw) scaleX(1.18) scaleY(0.88) rotate(4deg);
+}
+
+.mascot-enter {
+  animation: mascot-hard-brake 1.4s linear forwards;
+}
+

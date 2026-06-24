@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="145" height="58" viewBox="0 0 145 58">
+  <!-- Badge background: 30px radius, primary yellow -->
+  <rect width="145" height="58" rx="30" fill="#FFC905"/>
+  <!-- Small white cursor arrow icon (integrated, no external tail) -->
+  <g transform="translate(18, 19)">
+    <path d="M0 0L0 16L4.5 11.5L7.5 19L10.5 17.8L7.5 10.5H13Z" fill="white"/>
+  </g>
+  <!-- Nancy label -->
+  <text
+    x="87"
+    y="30"
+    font-family="-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif"
+    font-size="32"
+    font-weight="700"
+    fill="white"
+    text-anchor="middle"
+    dominant-baseline="middle"
+  >Nancy</text>
+</svg>
