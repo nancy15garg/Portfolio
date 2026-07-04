@@ -3,9 +3,9 @@
 import EntryPassHeader from "@/components/entry-pass/EntryPassHeader";
 import EntryPassFooter from "@/components/entry-pass/EntryPassFooter";
 import Hero from "@/components/Hero";
-import CompaniesSection from "@/components/CompaniesSection";
 import ProjectCard from "@/components/ProjectCard";
 import ProcessSection from "@/components/ProcessSection";
+import SkillsSection from "@/components/SkillsSection";
 import { projects } from "@/data/projects";
 
 type PortfolioContentProps = {
@@ -26,13 +26,13 @@ export default function PortfolioContent({ onBack }: PortfolioContentProps) {
       <main>
         <Hero />
 
-        <div className="mt-[80px] mb-[80px] md:mt-[200px] md:mb-[200px]">
-          <CompaniesSection />
+        <div className="mt-[80px] md:mt-[120px]">
+          <SkillsSection />
         </div>
 
         <section
           id="work"
-          className="max-w-[1200px] mx-auto px-8 md:px-12 space-y-12 pb-12"
+          className="max-w-[1200px] mx-auto px-8 md:px-12 space-y-12 pb-12 mt-[80px] md:mt-[120px]"
         >
           <div className="flex items-center justify-center gap-2">
             <p className="font-handwriting text-[16px] text-[#666] md:text-[20px]">
@@ -46,7 +46,7 @@ export default function PortfolioContent({ onBack }: PortfolioContentProps) {
           ))}
         </section>
 
-        <div className="mt-[80px] md:mt-[200px]">
+        <div className="mt-[120px] md:mt-[200px]">
           <ProcessSection />
         </div>
       </main>

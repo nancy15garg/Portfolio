@@ -118,7 +118,7 @@ export default function ProcessSection() {
 
   const iconSize = isMobile ? 44 : (screenSize === "tablet" ? 48 : ICON_SIZE);
   const iconGap  = isMobile ? 22 : (screenSize === "tablet" ? 44 : ICON_GAP);
-  const padTop   = isMobile ? 300 : (screenSize === "tablet" ? 400 : 500);
+  const padTop   = isMobile ? 300 : (screenSize === "tablet" ? 400 : 420);
 
   const activeStep = STEPS[active];
 
@@ -126,7 +126,7 @@ export default function ProcessSection() {
     <section ref={sectionRef} className="mx-auto max-w-[1200px] px-8 md:px-12 pb-12">
 
       {/* ── Header ── */}
-      <div className="mb-12 text-left">
+      <div className="mb-6 text-center">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.72px] text-[#5c5c5c]">
           the process
         </p>

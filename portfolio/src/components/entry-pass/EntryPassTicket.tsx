@@ -28,6 +28,8 @@ export default function EntryPassTicket({
   const currentDragY = useRef(0);
   // Absorbs the click event that browsers fire after a drag-to-tear pointerup
   const justToreRef = useRef(false);
+  // True when the user moved the pointer meaningfully before releasing (not a pure tap)
+  const hadDragRef = useRef(false);
 
   const resetDrag = useCallback(() => {
     isDraggingRef.current = false;
@@ -45,6 +47,7 @@ export default function EntryPassTicket({
     event.currentTarget.setPointerCapture(event.pointerId);
     isDraggingRef.current = true;
     currentDragY.current = 0;
+    hadDragRef.current = false;
     setIsDragging(true);
     dragStart.current = { pointerX: event.clientX, pointerY: event.clientY };
   };
@@ -55,6 +58,7 @@ export default function EntryPassTicket({
     const deltaY = event.clientY - dragStart.current.pointerY;
     const nextY = Math.max(0, deltaY);
 
+    if (nextY > 3) hadDragRef.current = true;
     currentDragY.current = nextY;
     setDragOffset({ x: 0, y: nextY });
 
@@ -118,7 +122,8 @@ export default function EntryPassTicket({
         <div className="relative h-[160px]">
           {/* Purple reveal card — entire card rotated at 6.12deg; badge cut by z-10 black section above */}
           <div
-            className="pointer-events-none absolute overflow-hidden transition-opacity duration-300"
+            className={`absolute overflow-hidden transition-opacity duration-300 ${isTorn ? "cursor-pointer" : "pointer-events-none"}`}
+            onClick={isTorn ? onEnterPortfolio : undefined}
             style={{
               top: -52,
               left: 48,
@@ -202,8 +207,14 @@ export default function EntryPassTicket({
               boxShadow: dragProgress > 0.2 ? "0 12px 32px rgba(0,0,0,0.08)" : "none",
             }}
             onClick={() => {
+              // Swallow the click that follows a drag-to-tear
               if (justToreRef.current) { justToreRef.current = false; return; }
-              if (isTorn) onReset();
+              // Suppress click that follows a drag attempt that didn't tear
+              if (hadDragRef.current) { hadDragRef.current = false; return; }
+              // Whole ticket is clickable to enter portfolio once torn
+              if (isTorn) { onEnterPortfolio(); return; }
+              // Tap-to-tear fallback (mobile)
+              onTorn();
             }}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}

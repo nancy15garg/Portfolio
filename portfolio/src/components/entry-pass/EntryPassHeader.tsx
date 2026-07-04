@@ -18,7 +18,7 @@ const navItems = [
   { label: "about", href: "#hero" },
   { label: "work",  href: "#work" },
   { label: "contact", action: "contact" as const },
-  { label: "resume", href: "https://drive.google.com/file/d/10_Wugyc_KFhtoodr8pCoC6TTzS2JR9pm/view?usp=sharing" },
+  { label: "resume", href: "https://drive.google.com/file/d/1X6n8UT9SyxNYLaTRmdP-GrMyIwvkZnha/view?usp=sharing" },
 ] as const;
 
 type NavItem = (typeof navItems)[number];

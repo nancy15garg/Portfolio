@@ -97,6 +97,24 @@ export default function Hero() {
             </div>
           ))}
         </div>
+
+        {/* Company logos */}
+        <div className="flex flex-col gap-4 mt-6">
+          <p className="text-xs font-medium uppercase tracking-[0.72px] text-[#5c5c5c]">worked at</p>
+          <div className="flex items-center gap-10">
+            {/* NxtWave */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/Group 6030.png" alt="NxtWave" className="h-10 w-auto object-contain" />
+            {/* CARS24 */}
+            <div className="h-10 w-[100px] overflow-hidden rounded">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/cars24.png" alt="CARS24" className="h-full w-full object-cover" />
+            </div>
+            {/* DeHaat */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/DeHaat.png" alt="DeHaat" className="h-10 w-auto object-contain" />
+          </div>
+        </div>
       </div>
     </section>
   );
