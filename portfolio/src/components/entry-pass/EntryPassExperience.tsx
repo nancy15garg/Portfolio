@@ -157,9 +157,11 @@ export default function EntryPassExperience({ onComplete }: EntryPassExperienceP
       </div>
 
       {/* Hero spacer — anchors initial title position */}
-      <section className="relative flex min-h-[72vh] items-center px-8 md:px-12">
-        <div ref={titleAnchorRef} className="invisible h-[80px] w-full max-w-[348px] md:h-[120px]" aria-hidden="true">
-          nancy
+      <section className="relative flex min-h-[72vh] items-center">
+        <div className="mx-auto w-full max-w-[1200px] px-8 md:px-12">
+          <div ref={titleAnchorRef} className="invisible h-[80px] w-full max-w-[348px] md:h-[120px]" aria-hidden="true">
+            nancy
+          </div>
         </div>
       </section>
 
