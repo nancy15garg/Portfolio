@@ -25,8 +25,10 @@ export default function EntryPassExperience({ onComplete }: EntryPassExperienceP
   const [headerLeft, setHeaderLeft] = useState(48);
   const [isMeasured, setIsMeasured] = useState(false);
   const [maxTitleSize, setMaxTitleSize] = useState(120);
+  const [titleWidth, setTitleWidth] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const titleAnchorRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
 
   const measureTitleStart = useCallback(() => {
     const anchor = titleAnchorRef.current;
@@ -37,6 +39,7 @@ export default function EntryPassExperience({ onComplete }: EntryPassExperienceP
     const pad = window.innerWidth >= 768 ? 48 : 32;
     setHeaderLeft(containerLeft + pad);
     setMaxTitleSize(window.innerWidth < 768 ? Math.min(80, Math.floor(window.innerWidth * 0.22)) : 120);
+    if (titleRef.current) setTitleWidth(titleRef.current.getBoundingClientRect().width);
     setIsMeasured(true);
   }, []);
 
@@ -109,6 +112,7 @@ export default function EntryPassExperience({ onComplete }: EntryPassExperienceP
 
       {/* Single morphing title — shrinks from hero into header */}
       <div
+        ref={titleRef}
         className="pointer-events-none fixed z-[60] flex items-end will-change-transform"
         style={{
           top: titleTop,
@@ -135,6 +139,21 @@ export default function EntryPassExperience({ onComplete }: EntryPassExperienceP
             borderRadius: dotSize > 12 ? 15 : 3,
           }}
         />
+      </div>
+
+      {/* Cursor credit — sits beside the dot, fades as title morphs into header */}
+      <div
+        className="pointer-events-none fixed z-[59]"
+        style={{
+          top: titleStart.top + maxTitleSize - 25 * (maxTitleSize / 120),
+          left: titleStart.left + titleWidth + 14,
+          transform: "translateY(-50%)",
+          opacity: isMeasured && titleWidth > 0 ? Math.max(0, 1 - progress * 3.5) : 0,
+        }}
+      >
+        <span className="font-handwriting text-[26px] font-bold text-[#999]">
+          Designed and Coded in Cursor
+        </span>
       </div>
 
       {/* Hero spacer — anchors initial title position */}

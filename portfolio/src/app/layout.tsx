@@ -12,7 +12,7 @@ const inter = Inter({
 const caveat = Caveat({
   subsets: ["latin"],
   variable: "--font-caveat",
-  weight: ["400"],
+  weight: ["400", "700"],
   display: "swap",
 });
 

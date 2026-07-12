@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import EntryPassHeader from "@/components/entry-pass/EntryPassHeader";
 import EntryPassFooter from "@/components/entry-pass/EntryPassFooter";
 import Hero from "@/components/Hero";
@@ -10,9 +11,20 @@ import { projects } from "@/data/projects";
 
 type PortfolioContentProps = {
   onBack?: () => void;
+  scrollTo?: string | null;
+  onScrolled?: () => void;
 };
 
-export default function PortfolioContent({ onBack }: PortfolioContentProps) {
+export default function PortfolioContent({ onBack, scrollTo, onScrolled }: PortfolioContentProps) {
+  useEffect(() => {
+    if (!scrollTo) return;
+    const frame = requestAnimationFrame(() => {
+      document.getElementById(scrollTo)?.scrollIntoView({ behavior: "smooth" });
+      onScrolled?.();
+    });
+    return () => cancelAnimationFrame(frame);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const handleContactClick = () => {
     document
       .getElementById("portfolio-contact")
