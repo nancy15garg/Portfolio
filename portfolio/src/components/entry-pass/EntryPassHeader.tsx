@@ -73,6 +73,19 @@ export default function EntryPassHeader({ onContactClick, onBack, onPortfolioNav
   };
 
   const renderNavItem = (item: NavItem, inDropdown = false) => {
+    if (item.label === "resume") {
+      return (
+        <button
+          key={item.label}
+          type="button"
+          onClick={() => handleNavItemClick(item)}
+          className={`cursor-pointer rounded-[10px] bg-[#0a0a0a] px-4 py-1.5 text-sm font-medium lowercase tracking-[-0.084px] text-white transition-colors hover:bg-[#333] ${inDropdown ? "w-full text-left" : ""}`}
+        >
+          {item.label}
+        </button>
+      );
+    }
+
     const isActive = "href" in item && activeSection === item.label;
     const baseClass = `cursor-pointer rounded-[10px] px-3 py-1.5 text-sm font-medium lowercase tracking-[-0.084px] transition-colors hover:text-[#0a0a0a] ${
       isActive ? "bg-[#f5f5f5] text-[#0a0a0a]" : "text-[#555]"

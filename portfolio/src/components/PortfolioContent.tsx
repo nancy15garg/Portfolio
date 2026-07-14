@@ -6,7 +6,6 @@ import EntryPassFooter from "@/components/entry-pass/EntryPassFooter";
 import Hero from "@/components/Hero";
 import ProjectCard from "@/components/ProjectCard";
 import ProcessSection from "@/components/ProcessSection";
-import SkillsSection from "@/components/SkillsSection";
 import { projects } from "@/data/projects";
 
 type PortfolioContentProps = {
@@ -37,10 +36,6 @@ export default function PortfolioContent({ onBack, scrollTo, onScrolled }: Portf
 
       <main>
         <Hero />
-
-        <div className="mt-[80px] md:mt-[120px]">
-          <SkillsSection />
-        </div>
 
         <section
           id="work"
